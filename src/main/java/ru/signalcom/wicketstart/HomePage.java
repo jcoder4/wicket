@@ -1,28 +1,44 @@
 package ru.signalcom.wicketstart;
 
+import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.WebPage;
-import org.apache.wicket.markup.html.form.Form;
-import org.apache.wicket.markup.html.form.TextField;
-import org.apache.wicket.model.PropertyModel;
+import org.apache.wicket.markup.html.link.Link;
+import sun.awt.ComponentFactory;
 
 public class HomePage extends WebPage {
+
+    private final String homePageTitleKey = "homePageTitle";
+    private final String homePageTitleValue = "Home page";
+
+    private final String homePageNameKey = "homePageName";
+    private final String homePageNameValue = "Home page";
+
+    private final String sessionTemporaryKey = "sessionTemporary";
+    private final String sessionTemporaryValue = "Temporary is ";
     
-    private final String messageForm1 = "1st messgae";
-    private final String messageForm2 = "2nd message";
+    private final String pageStatelessKey = "pageStateless";
+    private final String pageStatelessValue = "Page stateless is ";
+    
+    private final String pageVersionedKey = "pageVersioned";
+    private final String pageVersionedValue = "Page versioned is ";
 
     public HomePage() {
-        PropertyModel<String> messageModel1 = new PropertyModel<>(this, "messageForm1");
-        PropertyModel<String> messageModel2 = new PropertyModel<>(this, "messageForm2");
+        add(new Label(homePageTitleKey, homePageTitleValue));
+        add(new Label(homePageNameKey, homePageNameValue));
+        add(new Label(sessionTemporaryKey, sessionTemporaryValue + getSession().isTemporary()));
+        add(new Label(pageStatelessKey, pageStatelessValue + this.isPageStateless()));
+        add(new Label(pageVersionedKey, pageVersionedValue + this.isVersioned()));
+
+        add(new Link<Void>("loginpage") {
+            @Override
+            public void onClick() {
+                SimpleLoginPage loginPage = new SimpleLoginPage();
+                setResponsePage(loginPage);
+            }
+        });
         
-        add(new Label("messageGreeting", "Wicket form testing"));
-        add(new Label("messageForm1", messageModel1));
-        add(new Label("messageForm2", messageModel2));
-        add(new Label("messageForm3", messageModel1));
-        
-        Form<?> form = new Form("form");
-        form.add(new TextField("messageInput", messageModel1));
-        add(form);
+         
     }
-    
+
 }

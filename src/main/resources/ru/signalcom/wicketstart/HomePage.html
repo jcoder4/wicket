@@ -2,19 +2,17 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org">
     
     <head>
-        <title>Wicket Examples - Hello World</title>
+        <title wicket:id="homePageTitle">Wicket Examples - Hello World</title>
     </head>
     
     <body>
+        <div wicket:id="homePageName">homePageName</div>
+        <div wicket:id="sessionTemporary">sessionTemporary</div>
+        <div wicket:id="pageStateless">pageStateless</div>
+        <div wicket:id="pageVersioned">pageVersioned</div>
         
-        <span wicket:id="messageGreeting">Greeting</span>
-        <form wicket:id="form">
-            <input type="text" wicket:id="messageInput" value="" size="50" />
-            <input type="submit" value="Submit" />     
-        </form>
-        <span wicket:id="messageForm1">Form message1</span><br>
-        <span wicket:id="messageForm2">Form message2</span><br>
-        <span wicket:id="messageForm3">Form message3</span>
+        <div><a wicket:id="loginpage">Login page</a>
+	</div>
        
     </body>
 </html>
