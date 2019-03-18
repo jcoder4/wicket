@@ -1,18 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org">
-    
+
     <head>
         <title wicket:id="homePageTitle">Wicket Examples - Hello World</title>
     </head>
-    
+
     <body>
+        <div wicket:id="helloWorld">helloWorld</div>
+        
+        <div><a wicket:id="labelDisable">Disable the label</a></div>
+        
         <div wicket:id="homePageName">homePageName</div>
         <div wicket:id="sessionTemporary">sessionTemporary</div>
         <div wicket:id="pageStateless">pageStateless</div>
         <div wicket:id="pageVersioned">pageVersioned</div>
-        
-        <div><a wicket:id="loginpage">Login page</a>
-	</div>
-       
+        <div wicket:id="label">label</div>
+
+        <div><a wicket:id="loginpage">Login page</a></div>
+        <div><a wicket:id="reload">Reload</a></div>
+
     </body>
 </html>

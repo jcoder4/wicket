@@ -17,5 +17,13 @@ public class JugTemplate extends WebPage {
         add(footerPanel = new FooterPanel("footerPanel"));
         add(new Label(contentComponentKey, contentComponentValue));
     }
+
+    public Component getHeaderPanel() {
+        return headerPanel;
+    }
+
+    public Component getFooterPanel() {
+        return footerPanel;
+    }
     
 }

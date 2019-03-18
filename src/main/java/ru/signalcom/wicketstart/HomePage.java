@@ -1,6 +1,8 @@
 package ru.signalcom.wicketstart;
 
 import org.apache.wicket.Component;
+import org.apache.wicket.markup.ComponentTag;
+import org.apache.wicket.markup.MarkupStream;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.link.Link;
@@ -22,13 +24,54 @@ public class HomePage extends WebPage {
     
     private final String pageVersionedKey = "pageVersioned";
     private final String pageVersionedValue = "Page versioned is ";
+    
+    private final Label firstLabel;
+    private final Label secondLabel;
+    
+    private final Label helloWorld;
+    
 
     public HomePage() {
+        helloWorld = new Label("helloWorld", "Hello Java World!!!") {
+            @Override
+            public void onComponentTagBody(MarkupStream markupStream, ComponentTag openTag) {
+                if (!isEnabled()) {
+                    replaceComponentTagBody(markupStream, openTag, "Component is disabled");
+                } else {
+                    super.onComponentTagBody(markupStream, openTag);
+                }
+            }
+        };
+        
+        add(helloWorld);
+        
+//        add(new Label("helloWorld", "Hello Java World!!!") {
+//            @Override
+//            public void onComponentTagBody(MarkupStream markupStream, ComponentTag openTag) {
+//                if (!isEnabled()) {
+//                    replaceComponentTagBody(markupStream, openTag, "Component is disabled");
+//                } else {
+//                    super.onComponentTagBody(markupStream, openTag);
+//                }
+//            }
+//        });
+        
+        add(new Link<Void>("labelDisable") {
+            @Override
+            public void onClick() {
+                helloWorld.setEnabled(false);
+            }
+            
+        });
+        
         add(new Label(homePageTitleKey, homePageTitleValue));
         add(new Label(homePageNameKey, homePageNameValue));
         add(new Label(sessionTemporaryKey, sessionTemporaryValue + getSession().isTemporary()));
         add(new Label(pageStatelessKey, pageStatelessValue + this.isPageStateless()));
         add(new Label(pageVersionedKey, pageVersionedValue + this.isVersioned()));
+        
+        firstLabel = new Label("label", "First label");
+        secondLabel = new Label("label", "Second label");
 
         add(new Link<Void>("loginpage") {
             @Override
@@ -38,7 +81,24 @@ public class HomePage extends WebPage {
             }
         });
         
+        add(firstLabel);
+        
+        add(new Link<Void>("reload") {
+            @Override
+            public void onClick() {
+            }
+        });
          
+    }
+
+    @Override
+    protected void onBeforeRender() {
+        if (contains(firstLabel, true)) {
+            replace(secondLabel);
+        } else {
+            replace(firstLabel);
+        }
+        super.onBeforeRender();
     }
 
 }
