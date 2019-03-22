@@ -1,15 +1,15 @@
-<!DOCTYPE html>
-
 <html>
     <head>
-        <title wicket:id="loginPageTitle">TODO supply a title</title>
+        <title>Login page</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <div wicket:id="loginPageName">loginPageName</div>
-        <!--<div wicked:id="sessionTemporary">sessionTemporary</div>-->
-        <!--<div wicked:id="pageStateless">pageStateless</div>-->
-        <!--<div wicked:id="pageVersioned">pageVersioned</div>-->
+        <div>Login page</div>
+        <div wicket:id="message">Please sign</div>
+        <form wicket:id="loginForm">
+            <input type="submit" value="Sign" />
+        </form>
+        <div wicket:id="loginStatus">Status</div>
     </body>
 </html>

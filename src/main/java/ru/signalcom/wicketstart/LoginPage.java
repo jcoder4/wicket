@@ -2,30 +2,27 @@ package ru.signalcom.wicketstart;
 
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.markup.html.form.Form;
+import org.apache.wicket.model.Model;
+import org.apache.wicket.request.mapper.parameter.PageParameters;
 
 public class LoginPage extends WebPage {
+    
+    private Label loginStatus;
 
-    private final String loginPageTitleKey = "loginPageTitle";
-    private final String loginPageTitleValue = "Login page";
-
-    private final String loginPageNameKey = "loginPageName";
-    private final String loginPageNameValue = "Login page";
-
-    private final String sessionTemporaryKey = "sessionTemporary";
-    private final String sessionTemporaryValue = "Temporary is ";
-
-    private final String pageStatelessKey = "pageStateless";
-    private final String pageStatelessValue = "Page stateless is ";
-
-    private final String pageVersionedKey = "pageVersioned";
-    private final String pageVersionedValue = "Page versioned is ";
-
-    public LoginPage() {
-        add(new Label(loginPageTitleKey, loginPageTitleValue));
-        add(new Label(loginPageNameKey, loginPageNameValue));
-//        add(new Label(sessionTemporaryKey, sessionTemporaryValue + getSession().isTemporary()));
-//        add(new Label(pageStatelessKey, pageStatelessValue + this.isPageStateless()));
-//        add(new Label(pageVersionedKey, pageVersionedValue + this.isVersioned()));
+    public LoginPage(PageParameters pageParameters) {
+        super(pageParameters);
+        loginStatus = new Label("loginStatus", Model.of(""));
+        
+        add(loginStatus);
+        add(new Label("message", "Please sign"));        
+        add(new Form("loginForm") {
+            @Override
+            protected void onSubmit() {
+                loginStatus.setDefaultModelObject("Congratulations!");
+            }
+            
+        });
     }
 
 }
