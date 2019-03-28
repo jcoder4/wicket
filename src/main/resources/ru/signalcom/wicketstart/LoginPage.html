@@ -1,15 +1,18 @@
 <html>
     <head>
         <title>Login page</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <div>Login page</div>
-        <div wicket:id="message">Please sign</div>
-        <form wicket:id="loginForm">
-            <input type="submit" value="Sign" />
+        <form id="loginForm" method="get" wicket:id="loginForm">
+            <fieldset>
+                <legend style="color: #F90">Login</legend>
+                <p wicket:id="loginStatus"></p>
+                <span>Username: </span><input wicket:id="username" type="text" id="username" /><br/>
+                <span>Password: </span><input wicket:id="password" type="password" id="password" />
+                <p>
+                    <input type="submit" name="Login" value="Login"/>
+                </p>
+            </fieldset>
         </form>
-        <div wicket:id="loginStatus">Status</div>
     </body>
 </html>
